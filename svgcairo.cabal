@@ -20,6 +20,11 @@ x-Types-Destructor: objectUnrefFromMainloop
 Extra-Source-Files: svgcairo.h
                     Gtk2HsSetup.hs
 
+Data-Dir:		demo
+Data-Files:		Makefile
+                Svg2Png.hs
+                SvgViewer.hs
+				
 Source-Repository head
   type:         darcs
   location:     http://code.haskell.org/gtk2hs/
