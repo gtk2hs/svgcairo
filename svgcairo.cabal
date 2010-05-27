@@ -1,6 +1,6 @@
 Name:           svgcairo
 Version:        0.11.0
-License:        GPL
+License:        LGPL-2.1
 License-file:   COPYING
 Copyright:      (c) 2001-2010 The Gtk2Hs Team
 Author:         Duncan Coutts
@@ -10,9 +10,8 @@ Cabal-Version:  >= 1.6.0
 Stability:      provisional
 homepage:       http://www.haskell.org/gtk2hs/
 bug-reports:    http://hackage.haskell.org/trac/gtk2hs/
-Synopsis:       Binding to the GTK+ OpenGL Extension
-Description:    Svgcairo provides the GDK objects to support OpenGL rendering in GTK+,
-                and GtkWidget API add-ons to make GTK+ widgets OpenGL-capable.
+Synopsis:       Binding to the libsvg-cairo library.
+Description:    Svgcairo used to render SVG with cairo.
 
 Category:       Graphics
 Tested-With:    GHC == 6.12.1
