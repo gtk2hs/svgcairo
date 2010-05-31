@@ -11,7 +11,7 @@ Stability:      provisional
 homepage:       http://www.haskell.org/gtk2hs/
 bug-reports:    http://hackage.haskell.org/trac/gtk2hs/
 Synopsis:       Binding to the libsvg-cairo library.
-Description:    Svgcairo used to render SVG with cairo.
+Description:    Svgcairo is used to render SVG with cairo.
 
 Category:       Graphics
 Tested-With:    GHC == 6.12.1
