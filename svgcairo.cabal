@@ -27,8 +27,7 @@ Data-Files:		Makefile
 				
 Source-Repository head
   type:         darcs
-  location:     http://code.haskell.org/gtk2hs/
-  subdir:       svgcairo
+  location:     http://code.haskell.org/svgcairo
 
 Library
         build-depends:  base >= 4 && < 5, array, containers, haskell98, mtl,
