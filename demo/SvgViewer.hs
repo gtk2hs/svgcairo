@@ -1,4 +1,3 @@
-
 import System.Environment (getArgs)
 
 import Graphics.UI.Gtk
