@@ -83,7 +83,7 @@ import Control.Monad.Reader (ask, liftIO)
 import System.IO (Handle, openFile, IOMode(ReadMode), hGetBuf)
 
 import System.Glib.GError (GError(GError), checkGError)
-import System.Glib.GObject (GObject(..), GObjectClass(..), constructNewGObject,
+import System.Glib.GObject (GObject(..), GObjectClass(..), wrapNewGObject,
                             unGObject, objectUnref)
 
 import Graphics.Rendering.Cairo.Internal (Render, bracketR)
@@ -161,7 +161,7 @@ svgNewFromString str = do
 svgNew :: IO SVG
 svgNew = do
   {# call g_type_init #}
-  constructNewGObject mkSVG {# call unsafe new #}
+  wrapNewGObject mkSVG {# call unsafe new #}
 
 
 -- internal implementation
