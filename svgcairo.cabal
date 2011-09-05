@@ -14,7 +14,7 @@ Synopsis:       Binding to the libsvg-cairo library.
 Description:    Svgcairo is used to render SVG with cairo.
 
 Category:       Graphics
-Tested-With:    GHC == 6.12.1
+Tested-With:    GHC == 6.10.4, GHC == 6.12.3, GHC == 7.0.4, GHC == 7.2.1
 x-Types-Forward: *Graphics.UI.GtkInternals
 x-Types-Destructor: objectUnrefFromMainloop
 Extra-Source-Files: svgcairo.h
