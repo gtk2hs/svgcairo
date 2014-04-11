@@ -81,6 +81,8 @@ import Foreign
 import Foreign.C
 import Control.Monad.Reader (ask, liftIO)
 import System.IO (Handle, openFile, IOMode(ReadMode), hGetBuf)
+-- Importing qualified to avoid double import with GHC < 7.8
+import qualified System.IO.Unsafe as Unsafe
 
 import System.Glib.GError (GError(GError), checkGError)
 import System.Glib.GObject (GObject(..), GObjectClass(..), wrapNewGObject,
