@@ -219,7 +219,7 @@ svgRender svg = do
 svgGetSize :: 
     SVG
  -> (Int, Int) -- ^ @(width, height)@
-svgGetSize svg = unsafePerformIO $
+svgGetSize svg = Unsafe.unsafePerformIO $
   allocaBytes {# sizeof RsvgDimensionData #} $ \dimentionsPtr -> do
   {# call unsafe get_dimensions #} svg dimentionsPtr
   width  <- {# get RsvgDimensionData->width  #} dimentionsPtr
