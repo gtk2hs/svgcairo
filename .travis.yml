@@ -7,6 +7,7 @@ before_install:
   - sudo apt-get --no-install-recommends install darcs libgmp3-dev libgmp3c2 freeglut3 freeglut3-dev
   - sudo apt-get install cabal-install-1.18 ghc-$GHCVER
   - export PATH=$HOME/.cabal/bin:/opt/ghc/$GHCVER/bin:$PATH
+  - cabal-1.18 update
 install:
   - cabal-1.18 install gtk2hs-buildtools
 script:
