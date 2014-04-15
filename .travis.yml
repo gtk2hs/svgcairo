@@ -8,9 +8,9 @@ before_install:
   - sudo apt-get install cabal-install-1.18 ghc-$GHCVER
   - export PATH=$HOME/.cabal/bin:/opt/ghc/$GHCVER/bin:$PATH
 install:
-  - cabal install gtk2hs-buildtools
+  - cabal-1.18 install gtk2hs-buildtools
 script:
-  - cabal install
+  - cabal-1.18 install
 notifications:
   irc:
     channels: "irc.freenode.net#gtk2hs"
