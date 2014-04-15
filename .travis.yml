@@ -8,6 +8,10 @@ before_install:
   - sudo apt-get install cabal-install-1.18 ghc-$GHCVER
   - export PATH=$HOME/.cabal/bin:/opt/ghc/$GHCVER/bin:$PATH
   - cabal-1.18 update
+  - |
+    if [ $GHCVER = "head" ] || [ $GHCVER = "7.8.2" ]; then
+      cabal-1.18 install happy alex
+    fi
 install:
   - cabal-1.18 install gtk2hs-buildtools
 script:
