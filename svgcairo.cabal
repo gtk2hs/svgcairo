@@ -1,5 +1,5 @@
 Name:           svgcairo
-Version:        0.12.5.2
+Version:        0.13.0.0
 License:        BSD3
 License-file:   COPYING
 Copyright:      (c) 2001-2010 The Gtk2Hs Team
@@ -31,10 +31,10 @@ Source-Repository head
 
 Library
         build-depends:  base  == 4.*, mtl,
-                        glib  >=0.12.5.0 && <0.13, 
-                        cairo >=0.12.5.0 && <0.13
+                        glib  >=0.13.0.0 && <0.14, 
+                        cairo >=0.13.0.0 && <0.14
 						
-        build-tools:    gtk2hsC2hs >= 0.13.9,
+        build-tools:    gtk2hsC2hs >= 0.13.10,
                         gtk2hsTypeGen
 		
         exposed-modules:
