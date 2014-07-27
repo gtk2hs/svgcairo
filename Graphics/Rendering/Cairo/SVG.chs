@@ -1,8 +1,9 @@
 {-# LANGUAGE CPP #-}
+{-# LANGUAGE OverloadedStrings #-}
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Graphics.Rendering.Cairo.SVG
--- Copyright   :  (c) 2005 Duncan Coutts, Paolo Martini 
+-- Copyright   :  (c) 2005 Duncan Coutts, Paolo Martini
 -- License     :  BSD-style (see cairo/COPYRIGHT)
 --
 -- Maintainer  :  gtk2hs-devel@lists.sourceforge.net
@@ -77,6 +78,8 @@ module Graphics.Rendering.Cairo.SVG (
   ) where
 
 import Control.Monad (when)
+import Data.Monoid ((<>))
+import qualified Data.Text as T (unpack)
 import Foreign
 import Foreign.C
 import Control.Monad.Reader (ask, liftIO)
@@ -95,7 +98,7 @@ import Graphics.Rendering.Cairo.Internal (Render, bracketR)
 
 ---------------------
 -- Types
--- 
+--
 
 {# pointer *RsvgHandle as SVG foreign newtype #}
 
@@ -108,19 +111,19 @@ instance GObjectClass SVG where
 
 ---------------------
 -- Basic API
--- 
+--
 
 -- block scoped versions
 
 withSvgFromFile :: FilePath -> (SVG -> Render a) -> Render a
 withSvgFromFile file action =
-  withSVG $ \svg -> do   
+  withSVG $ \svg -> do
     liftIO $ svgParseFromFile file svg
     action svg
 
 withSvgFromHandle :: Handle -> (SVG -> Render a) -> Render a
 withSvgFromHandle hnd action =
-  withSVG $ \svg -> do   
+  withSVG $ \svg -> do
     liftIO $ svgParseFromHandle hnd svg
     action svg
 
@@ -136,7 +139,7 @@ withSVG =
              {# call g_type_init #}
              svgPtr <- {# call unsafe new #}
              svgPtr' <- newForeignPtr_ svgPtr
-             return (SVG svgPtr'))             
+             return (SVG svgPtr'))
           (\(SVG fptr) -> withForeignPtr fptr $ \ptr ->
                             {# call unsafe g_object_unref #} (castPtr ptr))
 
@@ -216,7 +219,7 @@ svgRender svg = do
 
 -- | Get the width and height of the SVG image.
 --
-svgGetSize :: 
+svgGetSize ::
     SVG
  -> (Int, Int) -- ^ @(width, height)@
 svgGetSize svg = Unsafe.unsafePerformIO $
@@ -228,7 +231,7 @@ svgGetSize svg = Unsafe.unsafePerformIO $
 
 ---------------------
 -- Convenience API
--- 
+--
 
 svgRenderFromFile :: FilePath -> Render Bool
 svgRenderFromFile file = withSvgFromFile file svgRender
@@ -241,9 +244,9 @@ svgRenderFromString str = withSvgFromString str svgRender
 
 ---------------------
 -- Utils
--- 
+--
 
 checkStatus :: (Ptr (Ptr ()) -> IO CInt) -> IO ()
 checkStatus action =
   checkGError (\ptr -> action ptr >> return ())
-    (\(GError domain code msg) -> fail ("svg cairo error: " ++ msg))
+    (\(GError domain code msg) -> fail (T.unpack $ "svg cairo error: " <> msg))

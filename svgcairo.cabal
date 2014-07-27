@@ -30,8 +30,8 @@ Source-Repository head
   location:     https://github.com/gtk2hs/svgcairo
 
 Library
-        build-depends:  base  == 4.*, mtl,
-                        glib  >=0.13.0.0 && <0.14, 
+        build-depends:  base  == 4.*, mtl, text,
+                        glib  >=0.13.0.0 && <0.14,
                         cairo >=0.13.0.0 && <0.14
 						
         build-tools:    gtk2hsC2hs >= 0.13.10,
@@ -39,7 +39,7 @@ Library
 		
         exposed-modules:
           Graphics.Rendering.Cairo.SVG
-		  
+		
         extensions:     ForeignFunctionInterface
 		
         Include-dirs: .
