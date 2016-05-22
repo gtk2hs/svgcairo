@@ -6,7 +6,7 @@ Copyright:      (c) 2001-2010 The Gtk2Hs Team
 Author:         Duncan Coutts
 Maintainer:     gtk2hs-users@lists.sourceforge.net
 Build-Type:     Custom
-Cabal-Version:  >= 1.8
+Cabal-Version:  >= 1.24
 Stability:      provisional
 homepage:       http://projects.haskell.org/gtk2hs/
 bug-reports:    https://github.com/gtk2hs/svgcairo/issues
@@ -18,7 +18,6 @@ Tested-With:    GHC == 6.10.4, GHC == 6.12.3, GHC == 7.0.4, GHC == 7.2.1
 x-Types-Forward: *Graphics.UI.GtkInternals
 x-Types-Destructor: objectUnrefFromMainloop
 Extra-Source-Files: svgcairo.h
-                    SetupWrapper.hs SetupMain.hs Gtk2HsSetup.hs
 
 Data-Dir:		demo
 Data-Files:		Makefile
@@ -28,6 +27,11 @@ Data-Files:		Makefile
 Source-Repository head
   type:         git
   location:     https://github.com/gtk2hs/svgcairo
+
+custom-setup
+  setup-depends: base >= 4.6,
+                 Cabal >= 1.24 && < 1.25,
+                 gtk2hs-buildtools >= 0.13.1.0 && < 0.14
 
 Library
         build-depends:  base  == 4.*, mtl, text,
@@ -41,7 +45,8 @@ Library
         exposed-modules:
           Graphics.Rendering.Cairo.SVG
 		
-        extensions:     ForeignFunctionInterface
+        default-language:       Haskell2010
+        default-extensions:     ForeignFunctionInterface
 		
         Include-dirs: .
         x-c2hs-Header:  svgcairo.h
