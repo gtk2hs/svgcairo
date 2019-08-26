@@ -38,7 +38,7 @@ Library
                         glib  >=0.13.0.0 && <0.14,
                         cairo >=0.13.0.0 && <0.14
 						
-        build-tools:    gtk2hsC2hs >= 0.13.11,
+        build-tools:    gtk2hsC2hs >= 0.13,
                         gtk2hsTypeGen
 
         cpp-options:    -U__BLOCKS__ -D__attribute__(A)= -D_Nullable= -D_Nonnull=
