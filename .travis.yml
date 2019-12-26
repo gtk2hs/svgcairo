@@ -1,10 +1,14 @@
 env:
- - CABALVER=1.24 GHCVER=7.8.3
- - CABALVER=1.24 GHCVER=7.8.4
- - CABALVER=1.24 GHCVER=7.10.1
- - CABALVER=1.24 GHCVER=7.10.2
  - CABALVER=1.24 GHCVER=7.10.3
  - CABALVER=1.24 GHCVER=8.0.1
+ - CABALVER=1.24 GHCVER=8.0.2
+ - CABALVER=2.0 GHCVER=8.2.1
+ - CABALVER=2.0 GHCVER=8.2.2
+ - CABALVER=2.2 GHCVER=8.4.1
+ - CABALVER=2.2 GHCVER=8.4.4
+ - CABALVER=2.4 GHCVER=8.6.1
+ - CABALVER=2.4 GHCVER=8.6.5
+ - CABALVER=3.0 GHCVER=8.8.1
 
 before_install:
  - travis_retry sudo add-apt-repository -y ppa:hvr/ghc
@@ -12,23 +16,27 @@ before_install:
  - travis_retry sudo apt-get --no-install-recommends install librsvg2-dev
  - travis_retry sudo apt-get install cabal-install-$CABALVER ghc-$GHCVER
  - export PATH=$HOME/.cabal/bin:/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH
- - |
-   if [ $GHCVER = "head" ] || [ ${GHCVER%.*} = "7.8" ] || [ ${GHCVER%.*} = "7.10" ] || [ ${GHCVER%.*} = "8.0" ]; then
-     travis_retry sudo apt-get install happy-1.19.4 alex-3.1.3
-     export PATH=/opt/alex/3.1.3/bin:/opt/happy/1.19.4/bin:$PATH
-   else
-     travis_retry sudo apt-get install happy alex
-   fi
 
 install:
  - cabal --version
  - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
  - cabal update
- - cabal install Cabal
+ - |
+   if [ $GHCVER = "head" ] || [ ${GHCVER%.*} = "8.8" ]; then
+     cabal build Cabal
+   else
+     cabal install Cabal
+   fi
+ - cabal install happy alex
  - cabal install gtk2hs-buildtools
 
 script:
-  - cabal install
+ - |
+   if [ $GHCVER = "head" ] || [ ${GHCVER%.*} = "8.8" ]; then
+     cabal build
+   else
+     cabal install
+   fi
 
 notifications:
   irc:
