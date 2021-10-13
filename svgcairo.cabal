@@ -49,4 +49,4 @@ Library
 
         Include-dirs: .
         x-c2hs-Header:  svgcairo.h
-        pkgconfig-depends: librsvg-2.0 >= 2.16.0
+        pkgconfig-depends: librsvg-2.0 >= 2.51.0
