@@ -32,7 +32,7 @@ Source-Repository head
 
 custom-setup
   setup-depends: base >= 4.6,
-                 Cabal >= 1.24 && < 3.1,
+                 Cabal >= 1.24 && < 3.3,
                  gtk2hs-buildtools >= 0.13.2.0 && < 0.14
 
 Library
@@ -40,7 +40,9 @@ Library
                         glib  >=0.13.0.0 && <0.14,
                         cairo >=0.13.0.0 && <0.14
 
-        cpp-options:    -U__BLOCKS__ -D__attribute__(A)= -D_Nullable= -D_Nonnull=
+        cpp-options:    -DGLIB_DISABLE_DEPRECATION_WARNINGS -D_Nullable= -D_Nonnull= -D_Noreturn=
+        if os(darwin)
+          cpp-options:    -DGLIB_DISABLE_DEPRECATION_WARNINGS -D__attribute__(A)= -D_Nullable= -D_Nonnull= -D_Noreturn=
         exposed-modules:
           Graphics.Rendering.Cairo.SVG
 
